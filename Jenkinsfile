@@ -83,9 +83,25 @@ pipeline{
                     nexusVersion: 'nexus3', protocol: 'http', 
                     repository: nexusRepo, 
                     version: "${readPomvVersion}"
+                    }
+                }
+        }
+        stage('docker image build'){
+
+            steps{
+
+                script{
+
+                    sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
+
+                    sh 'docker tag $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.$BUILD_ID'
+
+                    sh 'docker tag $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:latest'
+
+
+                }
             }
         }
-    }
     
     }
 

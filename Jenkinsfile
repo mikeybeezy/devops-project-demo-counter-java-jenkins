@@ -103,7 +103,32 @@ pipeline{
 
                 }
             }
-        }   
+        } 
+        stage('push to Docker Hub') {
+
+            steps{
+
+                script{
+
+                    withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DockerHub_Pass')]) {
+
+                        sh 'docker login -u mikeybabs -p ${DockerHub_Pass}'
+
+                        sh 'docker push $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.$BUILD_ID'
+
+                        sh 'docker push $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.latest'
+
+                    }
+
+
+                }
+            }
+
+
+
+
+
+        }
     }
 
 }

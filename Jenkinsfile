@@ -71,7 +71,8 @@ pipeline{
             steps{
 
                 script{
-
+                 withCredentials([string(credentialsId: 'revised_nexus_credentials', variable: 'NEXUS_DETAILS')]) {
+                    
                     def readPomvVersion = readMavenPom file: 'pom.xml'
 
                     nexusArtifactUploader artifacts: [[artifactId: 'springboot', 
@@ -86,6 +87,10 @@ pipeline{
                     repository: 'springboot_devops_project/', 
                     version: "${readPomvVersion}"
                     }
+
+
+                 }
+
                 }
          }
          stage('docker image build'){

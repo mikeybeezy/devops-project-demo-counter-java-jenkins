@@ -71,26 +71,21 @@ pipeline{
             steps{
 
                 script{
-                 withCredentials([string(credentialsId: 'revised_nexus_credentials', variable: 'NEXUS_DETAILS')]) {
-                    
+
                     def readPomvVersion = readMavenPom file: 'pom.xml'
 
-                    nexusArtifactUploader artifacts: [[artifactId: 'springboot', 
-                    classifier: '', 
+                    nexusArtifactUploader artifacts: [[artifactId: 'springboot',
+                    classifier: '',
                     file: 'target/Uber.jar',
-                    type: 'jar']], 
+                    type: 'jar']],
                     credentialsId: 'nexus-access-details',
-                    groupId: 'com.example', 
-                    nexusUrl: '34.251.22.225:8081', 
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: 'springboot_devops_project/', 
+                    groupId: 'com.example',
+                    nexusUrl: '34.251.22.225:8081',
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    repository: 'springboot_devops_project/',
                     version: "${readPomvVersion}"
                     }
-
-
-                 }
-
                 }
          }
          stage('docker image build'){

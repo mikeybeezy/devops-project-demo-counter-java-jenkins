@@ -116,7 +116,7 @@ pipeline{
 
                         sh 'docker push mikeybabs/$JOB_NAME:v1.$BUILD_ID'
 
-                        sh 'docker push mikeybabs/$JOB_NAME:v1.latest'
+                        sh 'docker push mikeybabs/$JOB_NAME:latest'
 
                     }
 

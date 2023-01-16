@@ -79,27 +79,11 @@ pipeline{
                     type: 'jar']], credentialsId: 'nexus-access-details',
                     groupId: 'com.example', nexusUrl: '34.251.22.225:8081/', 
                     nexusVersion: 'nexus3', protocol: 'http', 
-                    repository: "springboot_devops_project/",
+                    repository: 'springboot_devops_project/', 
                     version: "${readPomvVersion}"
-                    }
-                }
-        }
-        stage('docker image build'){
-
-            steps{
-
-                script{
-
-                    sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
-
-                    sh 'docker tag $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.$BUILD_ID'
-
-                    sh 'docker tag $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:latest'
-
-
-                }
             }
         }
+    }
     
     }
 

@@ -114,9 +114,9 @@ pipeline{
 
                         sh 'docker login -u mikeybabs -p ${DockerHub_Pass}'
 
-                        sh 'docker push $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.$BUILD_ID'
+                        sh 'docker push mikeybabs/$JOB_NAME:v1.$BUILD_ID'
 
-                        sh 'docker push $JOB_NAME:v1.$BUILD_ID mikeybabs/$JOB_NAME:v1.latest'
+                        sh 'docker push mikeybabs/$JOB_NAME:v1.latest'
 
                     }
 

@@ -81,7 +81,7 @@ pipeline{
                     type: 'jar']], credentialsId: 'nexus-access-details',
                     groupId: 'com.example', nexusUrl: '34.251.22.225:8081/', 
                     nexusVersion: 'nexus3', protocol: 'http', 
-                    repository: "springboot_devops_project",
+                    repository: "springboot_devops_project/",
                     version: "${readPomvVersion}"
                     }
                 }
